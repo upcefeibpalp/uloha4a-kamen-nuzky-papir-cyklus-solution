@@ -1,11 +1,3 @@
-# KST/BPALP - Cvičení 03
-
-**09. 10. 2023**
-
-Podmínky
-
-## Vytvořte jednoduchou hru „Kámen, nůžky, papír“
-
-- Implementujte jednoduché AI pro volbu počítače.
-- Uživatelský vstup pro volbu uživatele.
-- Vypište výhru/prohru uživatele a zvolené možnosti.
+# Úloha 04A
+Rozšiřte předchozí hru „Kámen, nůžky, papír“.
+Aby hra pokračovala při remíze, dokud se někdo nevyhraje (nejsou rozdílné volby).
