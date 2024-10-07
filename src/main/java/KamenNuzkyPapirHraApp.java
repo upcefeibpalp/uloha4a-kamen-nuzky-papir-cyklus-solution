@@ -1,4 +1,4 @@
-package cz.fei.upce.kamennuzkypapir;
+
 
 import java.util.Random;
 import java.util.Scanner;
