@@ -23,10 +23,10 @@ public class KamenNuzkyPapirHraApp {
 
         // Nacteni uzivatelskeho vstupu
         System.out.print("Zadej volbu: ");
-        byte uzivatelVyber = scanner.nextByte();
+        byte hrac = scanner.nextByte();
 
         // Overeni uzivatelskeho vstupu, pokud vstup nebyl validni...
-        if (uzivatelVyber < KAMEN || uzivatelVyber > PAPIR) {
+        if (hrac < KAMEN || hrac > PAPIR) {
             System.out.println("Spatny vyber");
             System.exit(1); // Ukonci program...
         }
@@ -39,12 +39,12 @@ public class KamenNuzkyPapirHraApp {
 
         System.out.println("---------------------");
 
-        if (uzivatelVyber == botVyber) { // Pokud jsou obe hodnoty stejne, remiza
+        if (hrac == botVyber) { // Pokud jsou obe hodnoty stejne, remiza
             System.out.println("Remiza");
         // Uzivatel vyhral pouze pokud...
-        } else if ((uzivatelVyber == KAMEN && botVyber == NUZKY) // zvolil kamen A bot zvolil nuzky NEBO
-                || (uzivatelVyber == NUZKY && botVyber == PAPIR) // zvolil nuzky A bot zvolil papir NEBO
-                || (uzivatelVyber == PAPIR && botVyber == KAMEN)) { // zvolil papir A bot zvolil kamen
+        } else if ((hrac == KAMEN && botVyber == NUZKY) // zvolil kamen A bot zvolil nuzky NEBO
+                || (hrac == NUZKY && botVyber == PAPIR) // zvolil nuzky A bot zvolil papir NEBO
+                || (hrac == PAPIR && botVyber == KAMEN)) { // zvolil papir A bot zvolil kamen
             System.out.println("Vyhra");
         } else { // V opacnem pripade uzivatel prohral
             System.out.println("Prohra");
