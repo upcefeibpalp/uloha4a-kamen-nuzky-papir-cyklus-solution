@@ -1,3 +1,4 @@
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -7,49 +8,70 @@ import java.util.Scanner;
  */
 public class KamenNuzkyPapirHraApp {
 
-    public static void main(String[] args) {
-        // Definovani konstant pro snadnejsi orientaci v kodu
-        final byte KAMEN = 0;
-        final byte NUZKY = 1;
-        final byte PAPIR = 2;
+    public static Volba[] PouzeHra = {Volba.KAMEN, Volba.NUZKY, Volba.PAPIR};
 
+    public static void main(String[] args) {
+
+        while (true) {
+
+            Volba uzivatelVyber = volbaUzivatel();
+            Volba vyberBot = volbaBot();
+
+            System.out.println("AI : " + vyberBot.toString());
+
+            System.out.println("---------------------");
+
+            if (uzivatelVyber == vyberBot) { // Pokud jsou obe hodnoty stejne, remiza
+                System.out.println("Remiza");
+                // Uzivatel vyhral pouze pokud...
+            } else if ((uzivatelVyber == Volba.KAMEN && vyberBot == Volba.NUZKY)
+                    || (uzivatelVyber == Volba.NUZKY && vyberBot == Volba.PAPIR)
+                    || (uzivatelVyber == Volba.PAPIR && vyberBot == Volba.KAMEN)) {
+                System.out.println("Vyhra");
+            } else { // V opacnem pripade uzivatel prohral
+                System.out.println("Prohra");
+            }
+        }
+        
+    }
+
+    private static Volba volbaUzivatel() {
         // Scanner pro ziskani uzivatelskeho vstupu z klavesnice
         Scanner scanner = new Scanner(System.in);
+        System.out.println("k - Kamen, n - Nuzky, p - Papir");
+        Volba uzivatelVyber = Volba.ERROR;
+        do {
+            // Nacteni uzivatelskeho vstupu
+            System.out.print("Zadej volbu: ");
+            uzivatelVyber = switch (scanner.next().charAt(0)) {
+                case 'k', 'K' ->
+                    Volba.KAMEN;
+                case 'n', 'N' ->
+                    Volba.NUZKY;
+                case 'p', 'P' ->
+                    Volba.PAPIR;
+                case 'e', 'E' ->
+                    Volba.EXIT;
+                default ->
+                    Volba.ERROR;
+            };
 
-        // Generator nahodnych cisel. Pro generovani stale stejnych cisel nutno zadat seed
+            if (uzivatelVyber == Volba.EXIT) {
+                System.out.println("Konec hry");
+                System.exit(0);
+            }
+
+            if (uzivatelVyber == Volba.ERROR) {
+                System.out.println("Spatny vyber - opakuj");
+
+            }
+        } while (uzivatelVyber == Volba.ERROR);
+        return uzivatelVyber;
+    }
+
+    private static Volba volbaBot() {
         Random random = new Random();
-
-        System.out.println("0 - Kamen, 1 - Nuzky, 2 - Papir");
-
-        // Nacteni uzivatelskeho vstupu
-        System.out.print("Zadej volbu: ");
-        byte uzivatelVyber = scanner.nextByte();
-
-        // Overeni uzivatelskeho vstupu, pokud vstup nebyl validni...
-        if (uzivatelVyber < KAMEN || uzivatelVyber > PAPIR) {
-            System.out.println("Spatny vyber");
-            System.exit(1); // Ukonci program...
-        }
-
-        // Generovani nahodneho cisla simulujiciho vyber pocitace v rozsahu <O, 3)
-        byte botVyber = (byte) random.nextInt(KAMEN, PAPIR + 1);
-
-        // Vypis vyberu bota
-        System.out.println("AI volba: " + botVyber);
-
-        System.out.println("---------------------");
-
-        if (uzivatelVyber == botVyber) { // Pokud jsou obe hodnoty stejne, remiza
-            System.out.println("Remiza");
-        // Uzivatel vyhral pouze pokud...
-        } else if ((uzivatelVyber == KAMEN && botVyber == NUZKY) // zvolil kamen A bot zvolil nuzky NEBO
-                || (uzivatelVyber == NUZKY && botVyber == PAPIR) // zvolil nuzky A bot zvolil papir NEBO
-                || (uzivatelVyber == PAPIR && botVyber == KAMEN)) { // zvolil papir A bot zvolil kamen
-            System.out.println("Vyhra");
-        } else { // V opacnem pripade uzivatel prohral
-            System.out.println("Prohra");
-        }
-
-        System.out.println("Konec hry");
+        Volba botVyber = Volba.values()[random.nextInt(PouzeHra.length)];
+        return botVyber;
     }
 }
