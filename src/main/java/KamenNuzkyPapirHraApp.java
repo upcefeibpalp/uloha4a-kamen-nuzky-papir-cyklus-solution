@@ -46,11 +46,11 @@ public class KamenNuzkyPapirHraApp {
         // Scanner pro ziskani uzivatelskeho vstupu z klavesnice
         Scanner scanner = new Scanner(System.in);
         System.out.println("k - Kamen, n - Nuzky, p - Papir");
-        Volba uzivatelVyber = Volba.ERROR;
+        Volba vyber = Volba.ERROR;
         do {
             // Nacteni uzivatelskeho vstupu
             System.out.print("Zadej volbu: ");
-            uzivatelVyber = switch (scanner.next().charAt(0)) {
+            vyber = switch (scanner.next().charAt(0)) {
                 case 'k', 'K' ->
                     Volba.KAMEN;
                 case 'n', 'N' ->
@@ -63,17 +63,17 @@ public class KamenNuzkyPapirHraApp {
                     Volba.ERROR;
             };
 
-            if (uzivatelVyber == Volba.EXIT) {
+            if (vyber == Volba.EXIT) {
                 System.out.println("Konec hry");
                 System.exit(0);
             }
 
-            if (uzivatelVyber == Volba.ERROR) {
+            if (vyber == Volba.ERROR) {
                 System.out.println("Spatny vyber - opakuj");
 
             }
-        } while (uzivatelVyber == Volba.ERROR);
-        return uzivatelVyber;
+        } while (vyber == Volba.ERROR);
+        return vyber;
     }
 
     private static Volba volbaBot() {
