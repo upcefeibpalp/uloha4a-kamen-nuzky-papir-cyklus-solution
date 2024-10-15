@@ -10,29 +10,36 @@ public class KamenNuzkyPapirHraApp {
 
     public static Volba[] PouzeHra = {Volba.KAMEN, Volba.NUZKY, Volba.PAPIR};
 
+    static Volba uzivatelVyber;
+    static Volba vyberBot;
+
     public static void main(String[] args) {
 
         while (true) {
+            uzivatelVyber = volbaUzivatel();
+            vyberBot = volbaBot();
 
-            Volba uzivatelVyber = volbaUzivatel();
-            Volba vyberBot = volbaBot();
-
-            System.out.println("AI : " + vyberBot.toString());
-
+            System.out.println("Hrac : " + uzivatelVyber.toString());
+            System.out.println("AI   : " + vyberBot.toString());
             System.out.println("---------------------");
 
-            if (uzivatelVyber == vyberBot) { // Pokud jsou obe hodnoty stejne, remiza
-                System.out.println("Remiza");
-                // Uzivatel vyhral pouze pokud...
-            } else if ((uzivatelVyber == Volba.KAMEN && vyberBot == Volba.NUZKY)
-                    || (uzivatelVyber == Volba.NUZKY && vyberBot == Volba.PAPIR)
-                    || (uzivatelVyber == Volba.PAPIR && vyberBot == Volba.KAMEN)) {
-                System.out.println("Vyhra");
-            } else { // V opacnem pripade uzivatel prohral
-                System.out.println("Prohra");
-            }
+            String vysledek = goHra();            
+            System.out.println(vysledek);
         }
-        
+    }
+
+    private static String goHra() {
+        String vysledek;
+        if (uzivatelVyber == vyberBot) {
+            vysledek = "remiza";
+        } else if ((uzivatelVyber == Volba.KAMEN && vyberBot == Volba.NUZKY)
+                || (uzivatelVyber == Volba.NUZKY && vyberBot == Volba.PAPIR)
+                || (uzivatelVyber == Volba.PAPIR && vyberBot == Volba.KAMEN)) {
+            vysledek ="Hrac vyhral";
+        } else {
+            vysledek = "Hrac prohral";
+        }
+        return vysledek;
     }
 
     private static Volba volbaUzivatel() {
