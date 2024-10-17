@@ -23,23 +23,21 @@ public class KamenNuzkyPapirHraApp {
             System.out.println("AI   : " + vyberBot.toString());
             System.out.println("---------------------");
 
-            String vysledek = goHra();            
+            Vysledek vysledek = goHra();            
             System.out.println(vysledek);
         }
     }
 
-    private static String goHra() {
-        String vysledek;
+    private static Vysledek goHra() {        
         if (uzivatelVyber == vyberBot) {
-            vysledek = "remiza";
+            return Vysledek.REMIZA;
         } else if ((uzivatelVyber == Volba.KAMEN && vyberBot == Volba.NUZKY)
                 || (uzivatelVyber == Volba.NUZKY && vyberBot == Volba.PAPIR)
                 || (uzivatelVyber == Volba.PAPIR && vyberBot == Volba.KAMEN)) {
-            vysledek ="Hrac vyhral";
+            return Vysledek.VYHRA;
         } else {
-            vysledek = "Hrac prohral";
-        }
-        return vysledek;
+            return Vysledek.PROHRA;
+        }       
     }
 
     private static Volba volbaUzivatel() {
@@ -51,16 +49,11 @@ public class KamenNuzkyPapirHraApp {
             // Nacteni uzivatelskeho vstupu
             System.out.print("Zadej volbu: ");
             vyber = switch (scanner.next().charAt(0)) {
-                case 'k', 'K' ->
-                    Volba.KAMEN;
-                case 'n', 'N' ->
-                    Volba.NUZKY;
-                case 'p', 'P' ->
-                    Volba.PAPIR;
-                case 'e', 'E' ->
-                    Volba.EXIT;
-                default ->
-                    Volba.ERROR;
+                case 'k', 'K' -> Volba.KAMEN;
+                case 'n', 'N' -> Volba.NUZKY;
+                case 'p', 'P' -> Volba.PAPIR;
+                case 'e', 'E' -> Volba.EXIT;
+                default -> Volba.ERROR;
             };
 
             if (vyber == Volba.EXIT) {
