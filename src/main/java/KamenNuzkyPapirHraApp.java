@@ -7,7 +7,7 @@ import java.util.Scanner;
  * <p>
  * Implementace je rozdělena podle pravidel a úloh hry do několika díčích kroků.
  * <p>
- * Metoda main obsahuje cyklus v jehož těle se volají metody z dílčími
+ * Metoda main obsahuje cyklus v jehož těle se volají metody s dílčími
  * odpovědnostmi (úkoly)
  * <ol>
  * <li>Nejdříve se se hráč vyzve k zadání jeho volby. Hráč se může rozhodnout
