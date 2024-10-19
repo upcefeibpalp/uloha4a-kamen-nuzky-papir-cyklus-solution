@@ -4,7 +4,7 @@
  * @author karel@simerda.cz
  */
 public enum Volba {
-    KAMEN("kámen"), NUZKY("nůžky"), PAPIR("papir"), EXIT("exit"), ERROR("error");
+    KAMEN("kámen"), NUZKY("nůžky"), PAPIR("papir");
 
     private final String text;
 
